@@ -1,24 +1,22 @@
-﻿using System.Linq.Expressions;
-using System.Runtime.ExceptionServices;
-
-namespace Ej2._5
+﻿namespace Ej2._5
 {
-    public class Program
+    internal class Program
     {
-        public void Main(string[] args)
+        public static void Main()
         {
+            Console.WriteLine("Hoola");
             do
             {
                 PrintMenu();
             } while (!ChooseOption());
         }
-        public void PrintMenu()
+        public static void PrintMenu()
         {
             Console.WriteLine("[1] Calcular àrea d’un rectangle\n" +
                 "[2] Mostrar si un any és de traspàs\n" +
                 "[3] Sortir del programa");
         }
-        public bool ChooseOption()
+        public static bool ChooseOption()
         {
             bool isValidateOption;
             do
@@ -40,9 +38,12 @@ namespace Ej2._5
                         break;
                 }
             } while (!isValidateOption);
+            Console.WriteLine("\nPresiona qualsevol tecla per tornar al menú");
+            Console.ReadKey();
+            Console.Clear();
             return false;
         }
-        public void Rectangle()
+        public static void Rectangle()
         {
             double width, height;
 
@@ -55,9 +56,12 @@ namespace Ej2._5
             Console.WriteLine($"L'àrea del rectangle és: {width * height}");
         }
 
-        public void Traspas()
+        public static void Traspas()
         {
-            int year = int.Parse(Console.ReadLine());
+            int year;
+
+            Console.WriteLine("Introdueïx l'any");
+            year = int.Parse(Console.ReadLine());
             if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
             {
                 Console.WriteLine($"{year} és un any de traspàs.");
