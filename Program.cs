@@ -4,47 +4,38 @@
     {
         public static void Main()
         {
-            string[] strings = new string[5];
-            string[] stringsreverse = new string[5];
-            string[] stringsinvers = new string[5];
+            int numero;
+            string input;
 
             try
             {
-                Console.WriteLine("Introdueïx 10 paraulse");
-                for (int i = 0; i < strings.Length; i++)
-                {
-                    Console.Write("Paraula " + (i + 1) + ": ");
-                    strings[i] = Console.ReadLine();
-                }
+                Console.WriteLine("Introdueïx un número enter");
+                input = Console.ReadLine();
 
-                //Canvia l'ordre de les paraules
-                for (int i = 0; i < strings.Length; i++)
+                if (int.TryParse(input, out numero))
                 {
-                    stringsreverse[i] = strings[strings.Length - 1 - i];
+                    int suma = SumaDigits(Math.Abs(numero)); // Usem valor absolut per evitar signes negatius
+                    Console.WriteLine("\nLa suma dels seus digits és: " + suma);
                 }
-                Console.WriteLine("\nLes paraules en ordre invers són:");
-                for (int i = 0; i < stringsreverse.Length; i++)
+                else
                 {
-                    Console.WriteLine(stringsreverse[i]);
+                    Console.WriteLine("Entrada no vàlida. Introdueix un número enter.");
                 }
-
-                //Inverteix les paraules
-                for (int i = 0; i < strings.Length; i++)
-                {
-                    char[] charArray = strings[i].ToCharArray();
-                    Array.Reverse(charArray);
-                    stringsinvers[i] = new string(charArray);
-                }
-                Console.WriteLine("\nLes paraules invertides són:");
-                for (int i = 0; i < stringsinvers.Length; i++)
-                {
-                    Console.WriteLine(stringsinvers[i]);
-                }
-            }
+            }    
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
+        static int SumaDigits(int n)
+        {
+            int suma = 0;
+            while (n > 0)
+            {
+                suma += n % 10; // Afegeix l'últim dígit
+                n /= 10;         // Elimina l'últim dígit
+            }
+            return suma;
+        }    
     }
 }
