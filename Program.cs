@@ -4,31 +4,25 @@
     {
         public static void Main()
         {
-            int suma;
-            int[] numeros = new int[5];
+            int numero, quadrat = 0;            
 
             try
             {
-                Console.WriteLine("Introdueïx 5 números");
-                for (int i = 0; i < 5; i++)
-                {
-                    Console.Write($"Número {i + 1}: ");
-                    numeros[i] = int.Parse(Console.ReadLine());
-                }
-                Console.WriteLine("\n");
-                for (int i = 0; i < 5; i++)
-                {
-                    Console.WriteLine($"El número {numeros[i]} es troba a la possició {i + 1}");
-                }
-
-                suma = numeros.Sum();
-                Console.WriteLine($"\nLa suma dels números és: {suma}");
+                Console.WriteLine("Introdueïx un número");
+                numero = int.Parse(Console.ReadLine());
+                quadrat = Quadrat(numero, quadrat);
+                Console.WriteLine($"\nEl quadrat de {numero} és {quadrat}.");
             }
             catch (FormatException)
             {
                 Console.WriteLine("El valor introduït no és un número vàlid.");
                 return;
             }
+        }
+        public static int Quadrat(int numero, int quadrat)
+        {
+            quadrat = numero * numero;
+            return quadrat;
         }
     }
 }
