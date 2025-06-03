@@ -4,25 +4,25 @@
     {
         public static void Main()
         {
-            int numero, quadrat = 0;            
+            int numero = 0;
+            string input;
 
-            try
+            while (numero < 1 || numero > 100)
             {
-                Console.WriteLine("Introdueïx un número");
-                numero = int.Parse(Console.ReadLine());
-                quadrat = Quadrat(numero, quadrat);
-                Console.WriteLine($"\nEl quadrat de {numero} és {quadrat}.");
+                Console.WriteLine("Introdueïx un número enter entre l'1 i el 100");
+                input = Console.ReadLine();
+
+                if (int.TryParse(input, out numero) && numero >= 1 && numero <= 100)
+                {
+                    Console.WriteLine($"\nNúmero {numero} introduït correctament.");
+                    break; // Sortim del bucle
+                }
+                else
+                {
+                    Console.Write("\nValor no vàlid. ");
+                }
+
             }
-            catch (FormatException)
-            {
-                Console.WriteLine("El valor introduït no és un número vàlid.");
-                return;
-            }
-        }
-        public static int Quadrat(int numero, int quadrat)
-        {
-            quadrat = numero * numero;
-            return quadrat;
         }
     }
 }
