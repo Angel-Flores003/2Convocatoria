@@ -1,42 +1,31 @@
-﻿namespace Ej2._5
+﻿using System.Text.RegularExpressions;
+
+namespace Ej2._5
 {
     public class Program
     {
         public static void Main()
         {
-            Console.WriteLine("Introdueix una contrasenya:\n\t " +
-                "Entre 8 i 12 caracters\n\t " +
-                "Amb una mayuscula una minuscula i un número\n\t " +
-                "Sense espais");
-            string contrasenya = Console.ReadLine();
+            Console.WriteLine("Introdueix la cadena de 8 dígits seguits d’una lletra: ");
+            string entrada = Console.ReadLine();
 
-            if (ValidarContra(contrasenya))
+            if (EsFormatValid(entrada))
             {
-                Console.WriteLine("La contrasenya és vàlida.");
+                Console.WriteLine("La cadena té el format correcte.");
             }
             else
             {
-                Console.WriteLine("La contrasenya no compleix els requisits.");
+                Console.WriteLine("Format incorrecte.");
             }
         }
 
-        static bool ValidarContra(string password)
+        static bool EsFormatValid(string text)
         {
-            if (password.Length < 8 || password.Length > 12) return false;
-
-            bool teMajuscula = false;
-            bool teMinuscula = false;
-            bool teNumero = false;
-
-            foreach (char c in password)
-            {
-                if (char.IsWhiteSpace(c)) return false;
-                if (char.IsUpper(c)) teMajuscula = true;
-                else if (char.IsLower(c)) teMinuscula = true;
-                else if (char.IsDigit(c)) teNumero = true;
-            }
-
-            return teMajuscula && teMinuscula && teNumero;
+            // ^ → inici de cadena
+            // \d{8} → exactament 8 dígits
+            // [A-Za-z] → una lletra (majúscula o minúscula)
+            // $ → final de cadena
+            return Regex.IsMatch(text, @"^\d{8}[A-Za-z]$");
         }
     }
 }
