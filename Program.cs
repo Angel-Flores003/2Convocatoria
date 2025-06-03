@@ -4,23 +4,39 @@
     {
         public static void Main()
         {
-            int numero = 0;
-            string input;
-
-            while (numero < 1 || numero > 100)
+            int[] numeros = new int[10];
+            int browser;
+            bool match = false;
+            try
             {
-                Console.WriteLine("Introdueïx un número enter entre l'1 i el 100");
-                input = Console.ReadLine();
-
-                if (int.TryParse(input, out numero) && numero >= 1 && numero <= 100)
+                Console.WriteLine("Introdueïx 10 números");
+                for (int i = 0; i < numeros.Length; i++)
                 {
-                    Console.WriteLine($"\nNúmero {numero} introduït correctament.");                    
+                    Console.Write("Número " + (i + 1) + ": ");
+                    numeros[i] = int.Parse(Console.ReadLine());
                 }
-                else
+
+                Console.WriteLine("\nIntrodueïx el número que vols buscar");
+                browser = int.Parse(Console.ReadLine());
+
+                match = BrowseArray(numeros, browser, match);
+                Console.WriteLine("\nEl número " + browser + (match ? " es troba a l'array." : " no es troba a l'array."));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+        public static bool BrowseArray(int[] numeros, int browser, bool match)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (numeros[i] == browser)
                 {
-                    Console.Write("\nValor no vàlid. ");
+                    match = true;
                 }
             }
+            return match;
         }
     }
 }
