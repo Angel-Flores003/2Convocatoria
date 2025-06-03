@@ -3,8 +3,7 @@
     internal class Program
     {
         public static void Main()
-        {
-            Console.WriteLine("Hoola");
+        {            
             do
             {
                 PrintMenu();
