@@ -1,6 +1,6 @@
 ﻿namespace Ej2._5
 {
-    internal class Program
+    public class Program
     {
         public static void Main()
         {            
@@ -42,7 +42,7 @@
             Console.Clear();
             return false;
         }
-        public static void Rectangle()
+                public static void Rectangle()
         {
             double width, height;
 
