@@ -4,38 +4,59 @@
     {
         public static void Main()
         {
-            int numero;
-            string input;
+            int[] numeros = new int[8];
 
             try
             {
-                Console.WriteLine("Introdueïx un número enter");
-                input = Console.ReadLine();
-
-                if (int.TryParse(input, out numero))
+                Console.WriteLine("Introdueïx 8 números:");
+                for (int i = 0; i < 8; i++)
                 {
-                    int suma = SumaDigits(Math.Abs(numero)); // Usem valor absolut per evitar signes negatius
-                    Console.WriteLine("\nLa suma dels seus digits és: " + suma);
+                    Console.Write($"Introdueïx el número de la possició {i + 1}: ");
+                    numeros[i] = int.Parse(Console.ReadLine());
                 }
-                else
-                {
-                    Console.WriteLine("Entrada no vàlida. Introdueix un número enter.");
-                }
-            }    
+                Console.WriteLine("\n");
+                Maxnum(numeros);
+                Minnum(numeros);
+                Avgnum(numeros);
+            }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
-        static int SumaDigits(int n)
+        public static void Maxnum(int[] numeros)
         {
-            int suma = 0;
-            while (n > 0)
+            int max = numeros[0];
+            for (int i = 1; i < numeros.Length; i++)
             {
-                suma += n % 10; // Afegeix l'últim dígit
-                n /= 10;         // Elimina l'últim dígit
+                if (numeros[i] > max)
+                {
+                    max = numeros[i];
+                }
             }
-            return suma;
-        }    
+            Console.WriteLine("El número màxim és: " + max);
+        }
+        public static void Minnum(int[] numeros)
+        {
+            int min = numeros[0];
+            for (int i = 1; i < numeros.Length; i++)
+            {
+                if (numeros[i] < min)
+                {
+                    min = numeros[i];
+                }
+            }
+            Console.WriteLine("El número mínim és: " + min);
+        }
+        public static void Avgnum(int[] numeros)
+        {
+            double sum = 0;
+            for (int i = 0; i < numeros.Length; i++)
+            {
+                sum += numeros[i];
+            }
+            double avg = sum / numeros.Length;
+            Console.WriteLine("La mitjana dels números és: " + avg);
+        }
     }
 }
