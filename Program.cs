@@ -14,14 +14,12 @@
 
                 if (int.TryParse(input, out numero) && numero >= 1 && numero <= 100)
                 {
-                    Console.WriteLine($"\nNúmero {numero} introduït correctament.");
-                    break; // Sortim del bucle
+                    Console.WriteLine($"\nNúmero {numero} introduït correctament.");                    
                 }
                 else
                 {
                     Console.Write("\nValor no vàlid. ");
                 }
-
             }
         }
     }
