@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Ej2._5
 {
@@ -6,26 +7,39 @@ namespace Ej2._5
     {
         public static void Main()
         {
-            Console.WriteLine("Introdueix la cadena de 8 dígits seguits d’una lletra: ");
-            string entrada = Console.ReadLine();
+            string entrada, format;
 
-            if (EsFormatValid(entrada))
+            Console.WriteLine("Introdueïx una data (dd/MM/yyyy)");
+            entrada = Console.ReadLine();
+
+            format = "dd/MM/yyyy";
+            CultureInfo culture = CultureInfo.InvariantCulture;
+
+            if (DateTime.TryParseExact(entrada, format, culture, DateTimeStyles.None, out DateTime data))
             {
-                Console.WriteLine("La cadena té el format correcte.");
+                // Mostra el dia de la setmana en català
+                string diaSetmana = culture.DateTimeFormat.GetDayName(data.DayOfWeek);
+                Console.WriteLine($"Data vàlida. Cau en {TraduirDiaCatalà(data.DayOfWeek)}.");
             }
             else
             {
-                Console.WriteLine("Format incorrecte.");
+                Console.WriteLine("La data no és vàlida.");
             }
         }
-
-        static bool EsFormatValid(string text)
+        
+        static string TraduirDiaCatalà(DayOfWeek dia)
         {
-            // ^ → inici de cadena
-            // \d{8} → exactament 8 dígits
-            // [A-Za-z] → una lletra (majúscula o minúscula)
-            // $ → final de cadena
-            return Regex.IsMatch(text, @"^\d{8}[A-Za-z]$");
+            return dia switch
+            {
+                DayOfWeek.Monday => "dilluns",
+                DayOfWeek.Tuesday => "dimarts",
+                DayOfWeek.Wednesday => "dimecres",
+                DayOfWeek.Thursday => "dijous",
+                DayOfWeek.Friday => "divendres",
+                DayOfWeek.Saturday => "dissabte",
+                DayOfWeek.Sunday => "diumenge",
+                _ => "desconegut"
+            };
         }
     }
 }
