@@ -4,23 +4,39 @@
     {
         public static void Main()
         {
-            int x, y;
-            double result;
+            Console.WriteLine("Introdueix una contrasenya:\n\t " +
+                "Entre 8 i 12 caracters\n\t " +
+                "Amb una mayuscula una minuscula i un número\n\t " +
+                "Sense espais");
+            string contrasenya = Console.ReadLine();
 
-            try
-            {               
-                Console.WriteLine("Introdueïx un número");
-                x = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Introdueïx un altre número");
-                y = int.Parse(Console.ReadLine());
-                result = x / y;
-                Console.WriteLine($"El resultat de la divisió és: {result}");
-            }
-            catch (Exception ex)
+            if (ValidarContra(contrasenya))
             {
-                Console.WriteLine(ex.ToString());
-            }                       
+                Console.WriteLine("La contrasenya és vàlida.");
+            }
+            else
+            {
+                Console.WriteLine("La contrasenya no compleix els requisits.");
+            }
+        }
+
+        static bool ValidarContra(string password)
+        {
+            if (password.Length < 8 || password.Length > 12) return false;
+
+            bool teMajuscula = false;
+            bool teMinuscula = false;
+            bool teNumero = false;
+
+            foreach (char c in password)
+            {
+                if (char.IsWhiteSpace(c)) return false;
+                if (char.IsUpper(c)) teMajuscula = true;
+                else if (char.IsLower(c)) teMinuscula = true;
+                else if (char.IsDigit(c)) teNumero = true;
+            }
+
+            return teMajuscula && teMinuscula && teNumero;
         }
     }
 }
