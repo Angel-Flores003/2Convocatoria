@@ -8,4 +8,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="testhost">
+      <HintPath>..\TestProjectEj2.23\bin\Debug\net8.0\testhost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
