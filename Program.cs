@@ -1,45 +1,50 @@
-﻿using System.Globalization;
-using System.Text.RegularExpressions;
-
-namespace Ej2._5
+﻿namespace Ej2._5
 {
     public class Program
     {
         public static void Main()
         {
-            string entrada, format;
+            int numero;
 
-            Console.WriteLine("Introdueïx una data (dd/MM/yyyy)");
-            entrada = Console.ReadLine();
-
-            format = "dd/MM/yyyy";
-            CultureInfo culture = CultureInfo.InvariantCulture;
-
-            if (DateTime.TryParseExact(entrada, format, culture, DateTimeStyles.None, out DateTime data))
+            try
             {
-                // Mostra el dia de la setmana en català
-                string diaSetmana = culture.DateTimeFormat.GetDayName(data.DayOfWeek);
-                Console.WriteLine($"Data vàlida. Cau en {TraduirDiaCatalà(data.DayOfWeek)}.");
+                Console.WriteLine("Introdueïx un número");
+                numero = int.Parse(Console.ReadLine());
+
+                PosNegZero(numero);
+                ParellSenar(numero);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("El valor introduït no és un número vàlid.");
+                return;
+            }
+        }   
+        public static void PosNegZero(int numero)
+        {
+            if (numero > 0)
+            {
+                Console.WriteLine("El número és positiu.");
+            }
+            else if (numero < 0)
+            {
+                Console.WriteLine("El número és negatiu.");
             }
             else
             {
-                Console.WriteLine("La data no és vàlida.");
+                Console.WriteLine("El número és zero.");
             }
         }
-        
-        static string TraduirDiaCatalà(DayOfWeek dia)
+        public static void ParellSenar(int numero)
         {
-            return dia switch
+            if (numero % 2 == 0)
             {
-                DayOfWeek.Monday => "dilluns",
-                DayOfWeek.Tuesday => "dimarts",
-                DayOfWeek.Wednesday => "dimecres",
-                DayOfWeek.Thursday => "dijous",
-                DayOfWeek.Friday => "divendres",
-                DayOfWeek.Saturday => "dissabte",
-                DayOfWeek.Sunday => "diumenge",
-                _ => "desconegut"
-            };
+                Console.WriteLine("El número és parell.");
+            }
+            else
+            {
+                Console.WriteLine("El número és senar.");
+            }
         }
     }
 }
