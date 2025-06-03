@@ -8,42 +8,22 @@
 
             try
             {
-                Console.WriteLine("Introdueïx un número");
+                Console.WriteLine("Introdueïx un número per veure la taula de multilicació");
                 numero = int.Parse(Console.ReadLine());
 
-                PosNegZero(numero);
-                ParellSenar(numero);
+                TableMultiplicar(numero);
             }
             catch (FormatException)
             {
                 Console.WriteLine("El valor introduït no és un número vàlid.");
                 return;
             }
-        }   
-        public static void PosNegZero(int numero)
-        {
-            if (numero > 0)
-            {
-                Console.WriteLine("El número és positiu.");
-            }
-            else if (numero < 0)
-            {
-                Console.WriteLine("El número és negatiu.");
-            }
-            else
-            {
-                Console.WriteLine("El número és zero.");
-            }
         }
-        public static void ParellSenar(int numero)
+        public static void TableMultiplicar(int numero)
         {
-            if (numero % 2 == 0)
+            for (int i = 1; i <= 10; i++)
             {
-                Console.WriteLine("El número és parell.");
-            }
-            else
-            {
-                Console.WriteLine("El número és senar.");
+                Console.WriteLine($"{numero} x {i} = {numero * i}");
             }
         }
     }
