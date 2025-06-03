@@ -4,39 +4,47 @@
     {
         public static void Main()
         {
-            int[] numeros = new int[10];
-            int browser;
-            bool match = false;
+            string[] strings = new string[5];
+            string[] stringsreverse = new string[5];
+            string[] stringsinvers = new string[5];
+
             try
             {
-                Console.WriteLine("Introdueïx 10 números");
-                for (int i = 0; i < numeros.Length; i++)
+                Console.WriteLine("Introdueïx 10 paraulse");
+                for (int i = 0; i < strings.Length; i++)
                 {
-                    Console.Write("Número " + (i + 1) + ": ");
-                    numeros[i] = int.Parse(Console.ReadLine());
+                    Console.Write("Paraula " + (i + 1) + ": ");
+                    strings[i] = Console.ReadLine();
                 }
 
-                Console.WriteLine("\nIntrodueïx el número que vols buscar");
-                browser = int.Parse(Console.ReadLine());
+                //Canvia l'ordre de les paraules
+                for (int i = 0; i < strings.Length; i++)
+                {
+                    stringsreverse[i] = strings[strings.Length - 1 - i];
+                }
+                Console.WriteLine("\nLes paraules en ordre invers són:");
+                for (int i = 0; i < stringsreverse.Length; i++)
+                {
+                    Console.WriteLine(stringsreverse[i]);
+                }
 
-                match = BrowseArray(numeros, browser, match);
-                Console.WriteLine("\nEl número " + browser + (match ? " es troba a l'array." : " no es troba a l'array."));
+                //Inverteix les paraules
+                for (int i = 0; i < strings.Length; i++)
+                {
+                    char[] charArray = strings[i].ToCharArray();
+                    Array.Reverse(charArray);
+                    stringsinvers[i] = new string(charArray);
+                }
+                Console.WriteLine("\nLes paraules invertides són:");
+                for (int i = 0; i < stringsinvers.Length; i++)
+                {
+                    Console.WriteLine(stringsinvers[i]);
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-        }
-        public static bool BrowseArray(int[] numeros, int browser, bool match)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                if (numeros[i] == browser)
-                {
-                    match = true;
-                }
-            }
-            return match;
         }
     }
 }
