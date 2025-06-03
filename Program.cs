@@ -1,44 +1,39 @@
-﻿namespace Ej2._5
+﻿using System.Linq.Expressions;
+using System.Runtime.ExceptionServices;
+
+namespace Ej2._5
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            int numero = 0, factorial = 0, iterativa, recursiva;
+            int numero, avg, parell;
+            int[] array = new int[10];
 
-            while (numero <= 0)
+            Console.WriteLine("Introdueïx 10 números");
+            for (int i = 0; i < array.Length; i++)
             {
                 try
                 {
-                    Console.WriteLine("Introdueïx un número enter i positiu per teclat");
-                    numero = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine($"Introdueïx un número enter per a la posició {i + 1}");
+                    array[i] = Convert.ToInt32(Console.ReadLine());
                 }
                 catch (FormatException)
                 {
                     Console.WriteLine("Entrada no vàlida. Si us plau, introdueix un número enter.");
+                    i--; // Decrementa i per repetir la iteració actual
                 }
             }
-
-            iterativa = Iterativa(numero);
-            Console.WriteLine($"De forma iterativa és {iterativa}");
-            recursiva = Recursiva(numero);
-            Console.WriteLine($"De fomra recursiva és {recursiva}");
-        }
-        public static int Iterativa(int numero)
-        {
-            int num = 1;
-
-            for (int i = 1; i <= numero; i++)
+            Console.WriteLine("\n");
+            for (int i = 0; i < array.Length; i++)
             {
-                num *= i;
-            }
-            return num;
-        }
-
-        public static int Recursiva(int numero)
-        {
-            if (numero == 0) return 1;
-            return numero * Recursiva(numero - 1);
-        }
+                if (array[i] % 2 == 0)
+                {
+                    Console.WriteLine($"El número {array[i]} és parell");
+                }
+            }            
+            avg = (int)array.Average();
+            Console.WriteLine($"La mitjana dels números és {avg}");
+        }      
     }
 }
